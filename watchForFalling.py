@@ -18,7 +18,7 @@ SWITCHGPIO = 8        # GPIO pin to watch
 GPIO.setmode(GPIO.BCM)      # use broadcom pin numbering
 GPIO.setwarnings(False)
 GPIO.setup(SWITCHGPIO, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-GPIO.add_event_detect(SWITCHGPIO, GPIO.FALLING, callback=switCallback)
+GPIO.add_event_detect(SWITCHGPIO, GPIO.FALLING, callback=switchCallback)
 
 def switchCallback(channel):
     global SWITCHGPIO
