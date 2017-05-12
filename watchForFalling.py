@@ -26,7 +26,7 @@ def switchCallback(channel):
         os.system('/sbin/shutdown -h now')
     sys.exit(0)
 
-def main()
+def main():
     global SWITCHGPIO
     GPIO.add_event_detect(SWITCHGPIO, GPIO.FALLING, callback=switchCallback)
     
