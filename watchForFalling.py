@@ -18,17 +18,24 @@ SWITCHGPIO = 8        # GPIO pin to watch
 GPIO.setmode(GPIO.BCM)      # use broadcom pin numbering
 GPIO.setwarnings(False)
 GPIO.setup(SWITCHGPIO, GPIO.IN, pull_up_down = GPIO.PUD_UP)
-GPIO.add_event_detect(SWITCHGPIO, GPIO.FALLING, callback=switchCallback)
 
 def switchCallback(channel):
-    global SWITCHGPIO
     global AUTOSHUTDOWN
 
+    if AUTOSHUTDOWN == 1:
+        os.system('/sbin/shutdown -h now')
+    sys.exit(0)
+
+def main()
+    global SWITCHGPIO
+    GPIO.add_event_detect(SWITCHGPIO, GPIO.FALLING, callback=switchCallback)
+    
     try:
         while True:
             sleep(5)
     except:
         GPIO.cleanup()
+
 
 if __name__=='__main__':
     main()
